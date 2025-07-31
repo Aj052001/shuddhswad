@@ -125,7 +125,7 @@ const Checkout = () => {
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_payment_id: response.razorpay_payment_id,
                 razorpay_signature: response.razorpay_signature,
-                items: cartItems,
+                items: getMergedItems(),
                 totalAmount: totalAmount,
                 shippingAddress: {
                   name: orderDetails.name,
