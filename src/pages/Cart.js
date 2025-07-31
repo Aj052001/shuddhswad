@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useCart } from './CartContext';
+import { useNavigate } from 'react-router-dom';
 import './Cart.css';
 import { FaTimes, FaMoneyBillWave, FaCreditCard, FaUniversity } from 'react-icons/fa';
 import { SiRazorpay } from 'react-icons/si';
 
-const RAZORPAY_KEY_ID = 'rzp_test_YourKeyHere'; // Replace with your Razorpay Test Key ID
+const RAZORPAY_KEY_ID = 'rzp_test_hTYuWONQ8RCtIq'; // Replace with your Razorpay Test Key ID
 const BACKEND_URL = 'https://e6d4290ba137.ngrok-free.app';
 
 const loadRazorpayScript = () => {
@@ -55,6 +56,7 @@ const PaymentOptionsModal = ({ open, onClose, onSelect, total }) => {
 };
 
 const Cart = () => {
+  const navigate = useNavigate();
   const { 
     getMergedItems, 
     getTotalPrice, 
@@ -69,7 +71,7 @@ const Cart = () => {
   const total = getTotalPrice();
 
   const handleBuyNow = () => {
-    setShowPaymentModal(true);
+    navigate('/checkout');
   };
 
   const handlePaymentSelect = async (method) => {
@@ -192,7 +194,7 @@ const Cart = () => {
                 Clear Cart
               </button>
               <button className="buy-button" onClick={handleBuyNow}>
-                BUY NOW
+                PROCEED TO CHECKOUT
               </button>
             </div>
           </div>

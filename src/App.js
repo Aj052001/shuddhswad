@@ -13,6 +13,7 @@ import About from './pages/About';
 import Layout from './layout/Layout';
 import User from './pages/User';
 import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
 import Caccount from './pages/Caccount';
 import Orders from './pages/Orders';
 import Track from './pages/Track';
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
       <Route path="track" element={<Track />} />
       <Route path="user" element={<User />} />
       <Route path="cart" element={<Cart />} />
+      <Route path="checkout" element={<Checkout />} />
       <Route path="caccount" element={<Caccount />} />
     </Route>
   )

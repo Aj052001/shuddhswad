@@ -6,7 +6,7 @@ const products = [
   {
     id: 1,
     title: "Traditional Thekua",
-    price: 299,
+    price: 1,
     originalPrice: 599,
     image: "/images/product1.jpeg",
     sale: true,

@@ -1,5 +1,6 @@
 // src/pages/CartContext.js
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 export const CartContext = createContext();
 
@@ -15,15 +16,78 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [showCartPopup, setShowCartPopup] = useState(false);
   const [lastAddedItem, setLastAddedItem] = useState(null);
+  const { user, isAuthenticated } = useAuth();
 
   // Calculate total items in cart
   const cartCount = cartItems.length;
 
-  // Add to Cart with popup
+  // Fetch cart from backend when user logs in
+  useEffect(() => {
+    if (isAuthenticated() && user) {
+      fetchCartFromBackend();
+    } else {
+      // Clear cart when user logs out
+      setCartItems([]);
+    }
+  }, [user]);
+
+  // Fetch cart from backend
+  const fetchCartFromBackend = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/cart`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success && data.cart) {
+          setCartItems(data.cart);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching cart:', error);
+    }
+  };
+
+  // Sync cart to backend
+  const syncCartToBackend = async (newCartItems) => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token || !isAuthenticated()) return;
+
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/cart`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ cartItems: newCartItems }),
+      });
+
+      if (!response.ok) {
+        console.error('Error syncing cart to backend');
+      }
+    } catch (error) {
+      console.error('Error syncing cart to backend:', error);
+    }
+  };
+
+  // Add to Cart with popup and backend sync
   const addToCart = (item) => {
-    setCartItems((prevItems) => [...prevItems, item]);
+    const newCartItems = [...cartItems, item];
+    setCartItems(newCartItems);
     setLastAddedItem(item);
     setShowCartPopup(true);
+    
+    // Sync to backend
+    syncCartToBackend(newCartItems);
     
     // Hide popup after 3 seconds
     setTimeout(() => {
@@ -34,12 +98,15 @@ export const CartProvider = ({ children }) => {
 
   // Remove all instances of an item
   const removeFromCart = (id) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    const newCartItems = cartItems.filter((item) => item.id !== id);
+    setCartItems(newCartItems);
+    syncCartToBackend(newCartItems);
   };
 
   // Clear entire cart
   const clearCart = () => {
     setCartItems([]);
+    syncCartToBackend([]);
   };
 
   // Remove only one quantity of the item
@@ -49,6 +116,7 @@ export const CartProvider = ({ children }) => {
       const updated = [...cartItems];
       updated.splice(index, 1); // remove only one item with that id
       setCartItems(updated);
+      syncCartToBackend(updated);
     }
   };
 

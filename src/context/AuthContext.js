@@ -38,6 +38,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    // Cart will be automatically saved to backend before logout
+    // due to the syncCartToBackend function in CartContext
     setUser(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
