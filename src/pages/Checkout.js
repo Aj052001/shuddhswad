@@ -124,7 +124,19 @@ const Checkout = () => {
               body: JSON.stringify({
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature: response.razorpay_signature
+                razorpay_signature: response.razorpay_signature,
+                items: cartItems,
+                totalAmount: totalAmount,
+                shippingAddress: {
+                  name: orderDetails.name,
+                  email: orderDetails.email,
+                  phone: orderDetails.phone,
+                  address: orderDetails.address,
+                  city: orderDetails.city,
+                  state: orderDetails.state,
+                  zipCode: orderDetails.pincode,
+                  country: 'India'
+                }
               })
             });
 
