@@ -1,0 +1,98 @@
+/* Centering container using flex */
+body{
+  background-color: #fdfaf0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  max-width: 700px;
+  margin: 40px auto 0 auto; /* Add top margin for navbar */
+  /* height: 100vh;  Remove this line */
+
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+  padding: 40px 30px;
+  background-color: rgba(255, 166, 0, 0.129);
+  border-radius: 12px;
+}
+
+/* Heading styling */
+h1 {
+  color: #3f001f;
+  margin-bottom: 30px;
+  font-size: 32px;
+}
+
+/* Input fields */
+.input {
+  width: 100%;
+  padding: 14px 16px;
+  margin: 12px 0;
+  border-radius: 10px;
+  border: 1px solid #aaa;
+  font-size: 16px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+/* "Forgot password" link */
+.link {
+  display: block;
+  margin: 8px 0 20px;
+  font-size: 13px;
+  color: #3f001f;
+  text-decoration: underline;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+/* Sign in button */
+.button {
+  width: 100%;
+  padding: 14px;
+  background-color: #7a1431;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #5c0f25;
+}
+
+/* Create account link-button */
+.link-button {
+  background: none;
+  border: none;
+  color: #3f001f;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Error message styling */
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ffcdd2;
+  font-size: 14px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Disabled button styling */
+.button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

@@ -1,0 +1,278 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+/* Full Width Slider */
+.full-width-slider-wrapper {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.full-width-slider-track {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+  width: 100%;
+  height: 100%;
+}
+
+.full-width-slide {
+  min-width: 100%;
+  height: 100%;
+}
+
+.full-width-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* Product Section */
+.home-container {
+  padding: 0; /* removed gap */
+  font-family: 'Poppins', sans-serif;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin: 30px 0;
+  color: #3b1f32;
+  text-align: center;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 30px;
+  padding: 0 20px; /* optional small side padding */
+}
+
+.product-card {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 0 2px #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 500px;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 0 0 2px #955;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  padding: 10px;
+  background-color: #00000010;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.sale-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background-color: #9b1d5b;
+  color: white;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.combo-tag {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #000;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 6px 14px;
+  border-radius: 4px;
+}
+
+.product-info {
+  padding: 15px 20px 25px;
+  text-align: center;
+}
+
+.product-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #3d3d3d;
+}
+
+.product-price {
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: gray;
+  margin-right: 10px;
+}
+
+.discounted-price {
+  color: #3b1f32;
+  font-weight: 600;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  padding: 12px 0;
+  background-color: transparent;
+  border: 2px solid #3b1f32;
+  color: #3b1f32;
+  font-size: 16px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #3b1f32;
+  color: white;
+}
+
+
+.review-wrapper {
+  background: #f7f9fc;
+  padding: 60px 30px;
+  font-family: "Segoe UI", sans-serif;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.review-wrapper h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.review-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.review-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+  width: 320px;
+}
+
+.review-card-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.review-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.review-date {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.review-rating {
+  color: #ffc107;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.review-text {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+
+.footer {
+  background-color: #f6f2e5;
+  padding: 40px 20px 20px;
+  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-column h3, .footer-column h4 {
+  margin-bottom: 16px;
+  color: #491e1e;
+}
+
+.footer-column p, .footer-column ul li {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: #491e1e;
+}
+
+.footer-social-icons a {
+  margin-right: 10px;
+  color: #491e1e;
+  font-size: 20px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
